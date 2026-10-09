@@ -1,31 +1,26 @@
-
 import { Container } from '../layout/Container'
+import { MobileHero } from './MobileHero'
+import { useMediaQuery } from '../../lib/useMediaQuery'
 
 export function Hero() {
+  const mobile = useMediaQuery('(max-width: 767px)')
+  if (mobile) return <MobileHero />
   return (
-    <section>
+    <section className="hidden md:block">
       <Container>
-        <div className="relative flex flex-col gap-6 lg:h-[450px] lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-          <div className="min-w-0 flex-1 lg:max-w-[600px] lg:self-start lg:pt-[48px]">
-            <p className="mb-[8px] text-[14px] text-white">
-              Bem-vindo à Kurio
-            </p>
+        <div className="relative flex h-[340px] items-center justify-between gap-6 xl:h-[450px] xl:gap-10">
+          <div className="min-w-0 flex-1 xl:max-w-[600px] xl:self-start xl:pt-[48px]">
+            <p className="mb-[8px] text-[14px] text-white">Bem-vindo à Kurio</p>
 
-
-            <h1 className="w-full max-w-[600px] text-[43px] leading-[70px] font-bold">
+            <h1 className="w-full max-w-[600px] text-[30px] font-bold leading-[42px] xl:text-[43px] xl:leading-[70px]">
               SEJA DONO DO FUTURO
-              <br className="hidden lg:block" />
-              {' '}DA ARTE DIGITAL
+              <br /> DA ARTE DIGITAL
             </h1>
 
-
-
-            <p className="mt-[4px] w-full lg:max-w-[557px] text-[14px] font-normal leading-[24px] text-muted">
-              Descubra NFTs selecionados de criadores emergentes e consagrados.
-              Colecione arte digital rara, apoie artistas e tenha uma parte da
-              cultura da internet.
+            <p className="mt-[4px] w-full xl:max-w-[557px] text-[14px] font-normal leading-[24px] text-muted">
+              Descubra NFTs selecionados de criadores emergentes e consagrados. Colecione arte
+              digital rara, apoie artistas e tenha uma parte da cultura da internet.
             </p>
-
 
             <a
               href="#catalogo"
@@ -54,23 +49,25 @@ export function Hero() {
             </a>
           </div>
 
-          <div className="w-full shrink-0 lg:h-[450px] lg:w-[450px]">
+          <div className="size-[260px] shrink-0 min-[1000px]:size-[320px] xl:size-[450px]">
             <img
-              src="/images/hero-ape.png"
+              width={450}
+              height={450}
+              fetchPriority="high"
+              src="/images/hero-ape.webp"
               alt="Arte digital de um macaco, destaque da coleção Kurio"
               className="h-full w-full rounded-xl object-cover"
             />
           </div>
 
           <div
-            className="absolute bottom-[40px] left-1/2 hidden -translate-x-1/2 items-center gap-[8px] lg:flex"
+            className="absolute bottom-[40px] left-1/2 hidden -translate-x-1/2 items-center gap-[8px] xl:flex"
             aria-hidden="true"
           >
             <span className="h-[7px] w-[7px] rounded-full bg-primary" />
             <span className="h-[7px] w-[7px] rounded-full bg-primary/70" />
             <span className="h-[7px] w-[7px] rounded-full bg-primary/70" />
           </div>
-
         </div>
       </Container>
     </section>

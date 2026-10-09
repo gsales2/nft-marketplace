@@ -1,0 +1,41 @@
+import { test, expect } from '@playwright/test'
+test('detalhes mobile seguem referência e controles continuam funcionando', async ({ page }) => {
+  await page.setViewportSize({ width: 414, height: 896 })
+  await page.goto('/nft/emerald')
+  await expect(page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ })).toBeEnabled()
+  await expect(page.getByRole('heading', { name: 'Emerald Ape #042' })).toBeVisible()
+  await expect(page.locator('header')).toHaveCount(0)
+  await page.screenshot({ path: 'test-results/nft-mobile-414.png', fullPage: true })
+  const purchaseBar = page.getByRole('region', { name: 'Comprar NFT', exact: true })
+  const before = await purchaseBar.boundingBox()
+  await page.getByRole('heading', { name: 'Mais desta coleção' }).scrollIntoViewIfNeeded()
+  await expect(page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ })).toBeInViewport()
+  const after = await purchaseBar.boundingBox()
+  expect(after?.y).toBe(before?.y)
+  expect(after!.y + after!.height).toBe(896)
+  await page.getByRole('button', { name: 'Coleção página 3' }).click()
+  await expect(page.getByRole('button', { name: 'Coleção página 3' })).toHaveAttribute(
+    'aria-current',
+    'page',
+  )
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.getByRole('button', { name: 'Aumentar quantidade' }).click()
+  await expect(page.getByLabel('Quantidade selecionada')).toHaveText('2')
+  await page.getByRole('button', { name: '1/1', exact: true }).click()
+  await expect(page.getByLabel('Quantidade selecionada')).toHaveText('1')
+  await expect(page.getByRole('button', { name: 'Aumentar quantidade' })).toBeDisabled()
+  await page.getByRole('button', { name: /avaliações de colecionadores/ }).click()
+  await expect(page.getByRole('dialog')).toContainText('Ainda não há avaliações')
+  await page.keyboard.press('Escape')
+  await page.getByRole('button', { name: 'Ampliar imagem do NFT' }).click()
+  await expect(page.getByRole('dialog')).toBeVisible()
+  await page.keyboard.press('Escape')
+  for (const width of [390, 320]) {
+    await page.setViewportSize({ width, height: 896 })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  }
+  await page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ }).click()
+  await expect(page.locator('aside[role=status]')).toContainText('NFT adicionado')
+  await page.getByRole('link', { name: 'Abrir carrinho', exact: true }).click()
+  await expect(page).toHaveURL(/\/cart$/)
+})

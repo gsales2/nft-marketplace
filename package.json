@@ -5,22 +5,37 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev:mocks": "vite --mode demo",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs && node scripts/compress.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "typecheck": "tsc -b",
+    "test:e2e": "playwright test",
+    "test:e2e:report": "playwright show-report",
+    "preview": "node scripts/preview.mjs",
+    "test:checkout": "playwright test tests/e2e/purchase.spec.ts tests/e2e/checkout-failures.spec.ts tests/e2e/realtime.spec.ts",
+    "test:accessibility": "playwright test tests/e2e/accessibility.spec.ts",
+    "test:visual": "playwright test tests/e2e/visual.spec.ts",
+    "audit:lighthouse": "npm run build && node scripts/lighthouse.mjs"
   },
   "dependencies": {
+    "@fontsource-variable/roboto-mono": "^5.3.0",
+    "@mswjs/socket.io-binding": "^0.2.0",
+    "@radix-ui/react-slot": "^1.4.0",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-query": "^5.104.1",
     "@tanstack/react-router": "^1.170.41",
     "axios": "^1.20.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "lucide-react": "^1.53.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "socket.io-client": "^4.8.4",
+    "tailwind-merge": "^3.7.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.64.0",
     "@tanstack/router-plugin": "^1.168.42",
@@ -32,9 +47,23 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",
     "globals": "^17.12.0",
-    "msw": "^3.0.2",
+    "lighthouse": "^13.5.0",
+    "msw": "2.15.0",
+    "prettier": "^3.9.9",
+    "sharp": "^0.35.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.69.0",
     "vite": "^8.3.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "overrides": {
+    "tldts": "7.0.19"
   }
 }
