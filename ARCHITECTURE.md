@@ -56,6 +56,8 @@ O build pré-renderiza as páginas públicas em contextos anônimos de desktop e
 
 O Tailwind procura classes apenas em `src` e `index.html`. Relatórios e cópias de validação não participam da geração do CSS.
 
+Os dois snapshots de viewport ficam em templates inertes no documento. O bootstrap move apenas o template adequado para a raiz, antes da hidratação. Isso evita calcular o layout desktop e buscar suas imagens durante a abertura mobile. Não há clonagem do DOM do template.
+
 O preview serve Brotli/gzip e usa o mesmo conteúdo completo do build. Lighthouse limpa armazenamento e caches a cada medição e utiliza o método DevTools, com as condições registradas no relatório. A medição local não comprova o desempenho da futura hospedagem. As 12 auditorias de 9 de outubro de 2026 estão em `reports/lighthouse`, com medianas e métricas em `summary.json`.
 
 `tldts` está fixado em 7.0.19, compatível com o intervalo exigido por tough-cookie, para evitar o aumento de tamanho da versão 7.4.18 no runtime MSW. A biblioteca completa de cookies continua incluída. Seeds usam hashes PBKDF2 pré-calculados com os mesmos parâmetros do cadastro; autenticação e troca de senha continuam derivando hashes normalmente.

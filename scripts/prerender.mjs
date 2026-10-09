@@ -93,7 +93,8 @@ try {
       desktop: snapshots.desktop.state,
       mobile: snapshots.mobile.state,
     }).replaceAll('<', '\\u003c')
-    const body = `<div id="root">${snapshots.desktop.html}</div>
+    const body = `<div id="root"></div>
+      <template id="kurio-desktop-page">${snapshots.desktop.html}</template>
       <template id="kurio-mobile-page">${snapshots.mobile.html}</template>
       <script id="kurio-public-state" type="application/json">${state}</script>
       <script>
@@ -102,9 +103,10 @@ try {
             !localStorage.getItem('kurio-mock-database-v1') &&
             (!localStorage.getItem('kurio-mock-scenario') || localStorage.getItem('kurio-mock-scenario') === 'default')) {
           window.kurioPrerenderProfile = matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop';
-          if (window.kurioPrerenderProfile === 'mobile') document.getElementById('root').replaceChildren(document.getElementById('kurio-mobile-page').content.cloneNode(true));
+          document.getElementById('root').replaceChildren(document.getElementById('kurio-' + window.kurioPrerenderProfile + '-page').content);
         } else document.getElementById('root').replaceChildren();
         document.getElementById('kurio-mobile-page').remove();
+        document.getElementById('kurio-desktop-page').remove();
       </script>`
     await writeFile(route.file, original.replace('<div id="root"></div>', body))
   }
