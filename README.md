@@ -1,5 +1,7 @@
 # Kurio NFT Marketplace
 
+[Demonstração publicada](https://kurio-nft-marketplace-blond.vercel.app) · [Código no GitHub](https://github.com/gsales2/nft-marketplace)
+
 React e TypeScript com TanStack Router, TanStack Query, Axios, Tailwind CSS e componentes adaptados do shadcn/ui. Catálogo, contas, favoritos, carrinho, carteiras e pedidos usam REST simulado por MSW. Socket.IO informa mudanças de preço, disponibilidade e situação das compras.
 
 Desktop mantém container de 1200 px e margens de 120 px em 1440 px. Tablet e mobile compartilham dados e regras. As imagens existentes são reutilizadas; Roboto Mono é servida localmente pelo pacote Fontsource.
@@ -236,7 +238,7 @@ Em 9 de outubro de 2026, as 12 medições locais atingiram as metas:
 | Página  | Perfil  | Performance | Acessibilidade | Boas práticas | SEO |
 | ------- | ------- | ----------: | -------------: | ------------: | --: |
 | Início  | Mobile  |          99 |            100 |           100 | 100 |
-| Detalhe | Mobile  |          97 |            100 |           100 | 100 |
+| Detalhe | Mobile  |          99 |            100 |           100 | 100 |
 | Início  | Desktop |         100 |            100 |           100 | 100 |
 | Detalhe | Desktop |         100 |             97 |           100 | 100 |
 
@@ -244,10 +246,12 @@ As pontuações são medianas de três execuções. Os relatórios, LCP, CLS, TB
 
 O método padrão é `devtools`, com as condições de rede e CPU dos perfis Lighthouse e limpeza do armazenamento entre medições. Para comparar com o método simulado, após o build execute `node scripts/lighthouse.mjs --throttling=simulate --output=reports/lighthouse-simulated`. Os relatórios registram versões, ambiente, configuração e LCP, CLS e TBT. Os valores dependem das condições registradas; não representam uma garantia para qualquer dispositivo ou ambiente.
 
-A configuração de publicação está em `vercel.json`, com suporte a rotas diretas e atualização sem cache do service worker. O ambiente de build precisa disponibilizar um navegador para a pré-renderização. A demonstração mantém o MSW habilitado. Não há backend ou blockchain de produção. Decisões e limites estão em `ARCHITECTURE.md`.
+A configuração de publicação está em `vercel.json`, com suporte a rotas diretas e atualização sem cache do service worker. Na Vercel, o comando de build instala NSS e Chromium antes de executar o build e a pré-renderização. Localmente, o build pode usar Edge com `PLAYWRIGHT_CHANNEL=msedge`. Se dois builds forem executados ao mesmo tempo, defina `KURIO_PRERENDER_PORT` com uma porta livre para cada um. A demonstração mantém o MSW habilitado. Não há backend ou blockchain de produção. Decisões e limites estão em `ARCHITECTURE.md`.
 
 ## Estado da entrega
 
-Em 9 de outubro de 2026, a suíte completa passou: **93 testes em 6,7 minutos**, sem falhas. As 12 comparações visuais de início, detalhe, carrinho e pagamento passaram em desktop, mobile e tablet. O [relatório HTML](reports/playwright/index.html) está versionado; abra-o com `npx playwright show-report reports/playwright`.
+Em 9 de outubro de 2026, a suíte completa passou: **105 testes em 7 minutos**, sem falhas. As 12 comparações visuais de início, detalhe, carrinho e pagamento passaram em desktop, mobile e tablet. O [relatório HTML](reports/playwright/index.html) está versionado; abra-o com `npx playwright show-report reports/playwright`.
 
-As 12 medições finais do Lighthouse também atingiram as metas. A instalação e o build de um checkout limpo e a validação do deploy público estão em andamento.
+A instalação com `npm ci`, a verificação de tipos, o lint e o build foram verificados em um checkout limpo. O deploy público passou por mais **22 testes em 1,1 minuto**, cobrindo catálogo REST, login e compra fictícia, persistência do comprovante, Socket.IO e acesso direto com refresh em desktop e mobile. O [relatório da publicação](reports/deployment/index.html) está versionado.
+
+Para repetir a verificação da publicação: `npx playwright test --config playwright.deployment.config.ts`. A variável `DEPLOYMENT_URL` permite testar outro endereço. No Windows com Edge, use `PLAYWRIGHT_CHANNEL=msedge`.
