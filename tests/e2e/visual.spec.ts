@@ -2,11 +2,33 @@ import { test, expect, type Page } from '@playwright/test'
 import { seedCheckout } from '../helpers/checkout'
 
 async function settleVisuals(page: Page) {
+  await expect(page.locator('[data-realtime-state]')).toHaveAttribute(
+    'data-realtime-state',
+    'connected',
+  )
+  await expect(page.locator('[data-skeleton]')).toHaveCount(0)
+  await expect(page.getByText('Atualizando catálogo…', { exact: true })).toHaveCount(0)
   await page.evaluate(async () => {
     await document.fonts.ready
-    await Promise.all([...document.images].map((image) => image.decode().catch(() => undefined)))
+    // A captura inclui a página inteira, inclusive imagens fora do viewport.
+    for (const image of document.images) image.loading = 'eager'
   })
-  await expect(page.locator('[data-skeleton]')).toHaveCount(0)
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        [...document.images]
+          .filter((image) => image.getAttribute('src'))
+          .every((image) => image.complete && image.naturalWidth > 0),
+      ),
+    )
+    .toBe(true)
+  await page.evaluate(() =>
+    Promise.all(
+      [...document.images]
+        .filter((image) => image.getAttribute('src'))
+        .map((image) => image.decode()),
+    ),
+  )
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
 }
 

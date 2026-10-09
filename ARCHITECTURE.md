@@ -52,4 +52,10 @@ Os PNGs existentes foram substituídos por WebP de qualidade 90, sem baixar nova
 
 As rotas públicas de início e detalhe são carregadas com a entrada; as rotas privadas continuam divididas pelo TanStack Router. Loaders antecipam consultas públicas compartilhadas com os hooks. Documentos de NFTs conhecidos incluem título e preload da imagem; preço, disponibilidade e interações continuam provenientes do REST. O service worker é registrado antecipadamente no build, mas as requisições só iniciam após o MSW estar pronto.
 
+O build pré-renderiza as páginas públicas em contextos anônimos de desktop e mobile. Exporta apenas consultas públicas de catálogo e NFTs e a sessão vazia. Perfil, carteiras, pedidos e identificadores de carrinho não entram no snapshot. A hidratação exige que a URL corresponda à rota capturada; o fallback de uma rota privada ou inexistente não reutiliza a home. Parâmetros de busca, dados persistidos ou uma sessão existente desativam essa hidratação e mantêm o carregamento normal. Depois de montar, a rota revalida os dados por REST. A cotação do pedido continua sendo conferida no servidor simulado.
+
+O Tailwind procura classes apenas em `src` e `index.html`. Relatórios e cópias de validação não participam da geração do CSS.
+
+O preview serve Brotli/gzip e usa o mesmo conteúdo completo do build. Lighthouse limpa armazenamento e caches a cada medição e utiliza o método DevTools, com as condições registradas no relatório. A medição local não comprova o desempenho da futura hospedagem. As 12 auditorias de 9 de outubro de 2026 estão em `reports/lighthouse`, com medianas e métricas em `summary.json`.
+
 `tldts` está fixado em 7.0.19, compatível com o intervalo exigido por tough-cookie, para evitar o aumento de tamanho da versão 7.4.18 no runtime MSW. A biblioteca completa de cookies continua incluída. Seeds usam hashes PBKDF2 pré-calculados com os mesmos parâmetros do cadastro; autenticação e troca de senha continuam derivando hashes normalmente.

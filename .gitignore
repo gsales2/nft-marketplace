@@ -26,3 +26,7 @@ test-results/
 *.sln
 *.sw?
 .vercel/
+.validation/
+
+.env*
+!.env.example

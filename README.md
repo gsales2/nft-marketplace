@@ -231,12 +231,23 @@ Perfil permite editar dados, avatar e senha. PNG/JPEG/WebP aceitam até 500 KB. 
 
 Execute `npm run audit:lighthouse` para medir início e detalhe em desktop e mobile, três vezes por tela. Os relatórios HTML/JSON e as medianas são gravados em `reports/lighthouse`. O comando falha se performance ficar abaixo de 90, acessibilidade abaixo de 95, boas práticas ou SEO abaixo de 100.
 
+Em 9 de outubro de 2026, as 12 medições locais atingiram as metas:
+
+| Página  | Perfil  | Performance | Acessibilidade | Boas práticas | SEO |
+| ------- | ------- | ----------: | -------------: | ------------: | --: |
+| Início  | Mobile  |          99 |            100 |           100 | 100 |
+| Detalhe | Mobile  |          97 |            100 |           100 | 100 |
+| Início  | Desktop |         100 |            100 |           100 | 100 |
+| Detalhe | Desktop |         100 |             97 |           100 | 100 |
+
+As pontuações são medianas de três execuções. Os relatórios, LCP, CLS, TBT e condições estão em [reports/README.md](reports/README.md) e [summary.json](reports/lighthouse/summary.json).
+
 O método padrão é `devtools`, com as condições de rede e CPU dos perfis Lighthouse e limpeza do armazenamento entre medições. Para comparar com o método simulado, após o build execute `node scripts/lighthouse.mjs --throttling=simulate --output=reports/lighthouse-simulated`. Os relatórios registram versões, ambiente, configuração e LCP, CLS e TBT. Os valores dependem das condições registradas; não representam uma garantia para qualquer dispositivo ou ambiente.
 
 A configuração de publicação está em `vercel.json`, com suporte a rotas diretas e atualização sem cache do service worker. O ambiente de build precisa disponibilizar um navegador para a pré-renderização. A demonstração mantém o MSW habilitado. Não há backend ou blockchain de produção. Decisões e limites estão em `ARCHITECTURE.md`.
 
 ## Estado da entrega
 
-Os fluxos, cenários de falha e testes estão implementados. Houve execuções dos testes e auditorias durante o desenvolvimento, mas ainda falta consolidar uma execução completa após as últimas otimizações, revisar as comparações visuais e gerar as 12 medições finais do Lighthouse.
+Em 9 de outubro de 2026, a suíte completa passou: **93 testes em 6,7 minutos**, sem falhas. As 12 comparações visuais de início, detalhe, carrinho e pagamento passaram em desktop, mobile e tablet. O [relatório HTML](reports/playwright/index.html) está versionado; abra-o com `npx playwright show-report reports/playwright`.
 
-Também permanecem pendentes a validação a partir de checkout limpo, o envio das alterações ao GitHub e o deploy público com verificação de rotas diretas, refresh, REST e Socket.IO. A configuração de hospedagem não significa que a aplicação já foi publicada.
+As 12 medições finais do Lighthouse também atingiram as metas. A instalação e o build de um checkout limpo e a validação do deploy público estão em andamento.

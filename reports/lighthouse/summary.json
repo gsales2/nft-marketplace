@@ -1,0 +1,387 @@
+{
+  "environment": {
+    "date": "2026-10-09T19:39:18.568Z",
+    "baseURL": "http://127.0.0.1:5195",
+    "node": "v24.20.0",
+    "platform": "win32",
+    "release": "10.0.26200",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12400F",
+    "cpuCount": 6,
+    "memoryGB": 32,
+    "lighthouse": "13.5.0",
+    "browserPath": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+    "browserVersion": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+    "configurations": {
+      "mobile": {
+        "output": [
+          "html",
+          "json"
+        ],
+        "maxWaitForFcp": 30000,
+        "maxWaitForLoad": 45000,
+        "pauseAfterFcpMs": 5250,
+        "pauseAfterLoadMs": 5250,
+        "networkQuietThresholdMs": 5250,
+        "cpuQuietThresholdMs": 5250,
+        "formFactor": "mobile",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "throttlingMethod": "devtools",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 390,
+          "height": 844,
+          "deviceScaleFactor": 1,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+        "auditMode": false,
+        "gatherMode": false,
+        "clearStorageTypes": [
+          "file_systems",
+          "shader_cache",
+          "service_workers",
+          "cache_storage",
+          "local_storage",
+          "indexeddb"
+        ],
+        "disableStorageReset": false,
+        "debugNavigation": false,
+        "channel": "node",
+        "usePassiveGathering": false,
+        "disableFullPageScreenshot": false,
+        "skipAboutBlank": false,
+        "blankPage": "about:blank",
+        "ignoreStatusCode": false,
+        "locale": "en-US",
+        "blockedUrlPatterns": null,
+        "additionalTraceCategories": null,
+        "extraHeaders": null,
+        "precomputedLanternData": null,
+        "onlyAudits": null,
+        "onlyCategories": [
+          "performance",
+          "accessibility",
+          "best-practices",
+          "seo"
+        ],
+        "skipAudits": null
+      },
+      "desktop": {
+        "output": [
+          "html",
+          "json"
+        ],
+        "maxWaitForFcp": 30000,
+        "maxWaitForLoad": 45000,
+        "pauseAfterFcpMs": 5250,
+        "pauseAfterLoadMs": 5250,
+        "networkQuietThresholdMs": 5250,
+        "cpuQuietThresholdMs": 5250,
+        "formFactor": "desktop",
+        "throttling": {
+          "rttMs": 40,
+          "throughputKbps": 10240,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "throttlingMethod": "devtools",
+        "screenEmulation": {
+          "mobile": false,
+          "width": 1440,
+          "height": 1000,
+          "deviceScaleFactor": 1,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+        "auditMode": false,
+        "gatherMode": false,
+        "clearStorageTypes": [
+          "file_systems",
+          "shader_cache",
+          "service_workers",
+          "cache_storage",
+          "local_storage",
+          "indexeddb"
+        ],
+        "disableStorageReset": false,
+        "debugNavigation": false,
+        "channel": "node",
+        "usePassiveGathering": false,
+        "disableFullPageScreenshot": false,
+        "skipAboutBlank": false,
+        "blankPage": "about:blank",
+        "ignoreStatusCode": false,
+        "locale": "en-US",
+        "blockedUrlPatterns": null,
+        "additionalTraceCategories": null,
+        "extraHeaders": null,
+        "precomputedLanternData": null,
+        "onlyAudits": null,
+        "onlyCategories": [
+          "performance",
+          "accessibility",
+          "best-practices",
+          "seo"
+        ],
+        "skipAudits": null
+      }
+    },
+    "mocks": {
+      "scenario": "default",
+      "baselineLatencyMs": 180,
+      "realtime": "Socket.IO over MSW WebSocket"
+    },
+    "server": "production preview, Brotli/gzip compression; browser cache reset every run",
+    "runs": 3,
+    "throttling": "Lighthouse devtools; desktop/mobile defaults; cold storage per run",
+    "targets": {
+      "performance": 90,
+      "accessibility": 95,
+      "best-practices": 100,
+      "seo": 100
+    }
+  },
+  "results": [
+    {
+      "page": "inicio",
+      "profile": "mobile",
+      "measurements": [
+        {
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1768.004,
+            "cls": 0.002428621424656126,
+            "tbt": 44.568999999523385
+          }
+        },
+        {
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1731.652,
+            "cls": 0.002428621424656126,
+            "tbt": 45.4970000000003
+          }
+        },
+        {
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1715.183,
+            "cls": 0.002428621424656126,
+            "tbt": 13.508000000000266
+          }
+        }
+      ],
+      "median": {
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcp": 1731.652,
+          "cls": 0.002428621424656126,
+          "tbt": 44.568999999523385
+        }
+      }
+    },
+    {
+      "page": "detalhe",
+      "profile": "mobile",
+      "measurements": [
+        {
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 2119.294,
+            "cls": 0.01028175122198167,
+            "tbt": 16.21900000000005
+          }
+        },
+        {
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1609.617,
+            "cls": 0.02463173496002895,
+            "tbt": 7.855000000000473
+          }
+        },
+        {
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 2084.858,
+            "cls": 0.01028175122198167,
+            "tbt": 14.929999999999836
+          }
+        }
+      ],
+      "median": {
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcp": 2084.858,
+          "cls": 0.01028175122198167,
+          "tbt": 14.929999999999836
+        }
+      }
+    },
+    {
+      "page": "inicio",
+      "profile": "desktop",
+      "measurements": [
+        {
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 167.723,
+            "cls": 0,
+            "tbt": 0
+          }
+        },
+        {
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 83.722,
+            "cls": 0,
+            "tbt": 0
+          }
+        },
+        {
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 90.705,
+            "cls": 0,
+            "tbt": 0
+          }
+        }
+      ],
+      "median": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcp": 90.705,
+          "cls": 0,
+          "tbt": 0
+        }
+      }
+    },
+    {
+      "page": "detalhe",
+      "profile": "desktop",
+      "measurements": [
+        {
+          "scores": {
+            "performance": 100,
+            "accessibility": 97,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 228.149,
+            "cls": 0,
+            "tbt": 0
+          }
+        },
+        {
+          "scores": {
+            "performance": 100,
+            "accessibility": 97,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 97.767,
+            "cls": 0.0003894722068328717,
+            "tbt": 0
+          }
+        },
+        {
+          "scores": {
+            "performance": 100,
+            "accessibility": 97,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 100.124,
+            "cls": 0.0003894722068328717,
+            "tbt": 0
+          }
+        }
+      ],
+      "median": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 97,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcp": 100.124,
+          "cls": 0.0003894722068328717,
+          "tbt": 0
+        }
+      }
+    }
+  ]
+}

@@ -6,8 +6,10 @@ import { loadEnv } from 'vite'
 
 const baseURL = 'http://127.0.0.1:5196'
 const environment = loadEnv('production', process.cwd(), 'VITE_')
-if (!(await readFile('dist/index.html', 'utf8')).includes('kurioWorkerReady') ||
-    (environment.VITE_MOCK_SCENARIO && environment.VITE_MOCK_SCENARIO !== 'default')) {
+if (
+  !(await readFile('dist/index.html', 'utf8')).includes('kurioWorkerReady') ||
+  (environment.VITE_MOCK_SCENARIO && environment.VITE_MOCK_SCENARIO !== 'default')
+) {
   console.log('Prerender skipped: only the default mock build exports public snapshots.')
   process.exit(0)
 }
@@ -79,7 +81,8 @@ try {
       <template id="kurio-mobile-page">${snapshots.mobile.html}</template>
       <script id="kurio-public-state" type="application/json">${state}</script>
       <script>
-        if (!location.search && !localStorage.getItem('kurio-session-token') &&
+        if ((location.pathname === ${JSON.stringify(route.url)} || location.pathname === ${JSON.stringify(route.url === '/' ? '/' : `${route.url}/`)}) &&
+            !location.search && !localStorage.getItem('kurio-session-token') &&
             !localStorage.getItem('kurio-mock-database-v1') &&
             (!localStorage.getItem('kurio-mock-scenario') || localStorage.getItem('kurio-mock-scenario') === 'default')) {
           window.kurioPrerenderProfile = matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop';
