@@ -4,7 +4,11 @@ import path from 'node:path'
 import { chromium } from '@playwright/test'
 import { loadEnv } from 'vite'
 
-const baseURL = 'http://127.0.0.1:5196'
+const port = Number(process.env.KURIO_PRERENDER_PORT ?? 5196)
+if (!Number.isInteger(port) || port < 1024 || port > 65535) {
+  throw new Error('Porta de pré-renderização inválida.')
+}
+const baseURL = `http://127.0.0.1:${port}`
 const environment = loadEnv('production', process.cwd(), 'VITE_')
 if (
   !(await readFile('dist/index.html', 'utf8')).includes('kurioWorkerReady') ||
@@ -13,16 +17,28 @@ if (
   console.log('Prerender skipped: only the default mock build exports public snapshots.')
   process.exit(0)
 }
-const server = spawn(process.execPath, ['scripts/preview.mjs', '--port', '5196'], {
-  stdio: 'ignore',
+const server = spawn(process.execPath, ['scripts/preview.mjs', '--port', String(port)], {
+  stdio: ['ignore', 'pipe', 'pipe'],
   windowsHide: true,
+})
+let listening = false
+let startupError
+server.stdout.on('data', (chunk) => {
+  if (chunk.toString().includes('Production preview:')) listening = true
+})
+server.on('error', (error) => {
+  startupError = error
+})
+server.on('exit', (code) => {
+  if (!listening) startupError = new Error(`O preview encerrou antes de iniciar (código ${code}).`)
 })
 let browser
 const requestedPage = process.argv.find((arg) => arg.startsWith('--page='))?.slice(7)
 try {
   for (let attempt = 0; attempt < 50; attempt++) {
+    if (startupError) throw startupError
     try {
-      if ((await fetch(baseURL)).ok) break
+      if (listening && (await fetch(baseURL)).ok) break
     } catch {
       /* Preview starts asynchronously. */
     }
