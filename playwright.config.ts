@@ -5,7 +5,11 @@ export default defineConfig({
   fullyParallel: false,
   workers: 1,
   timeout: 30_000,
-  expect: { timeout: 10_000 },
+  expect: {
+    timeout: 10_000,
+    // Bordas de SVG e imagens arredondadas variam alguns pixels entre máquinas Windows.
+    toHaveScreenshot: { maxDiffPixels: 40 },
+  },
   snapshotPathTemplate: '{testDir}/visual-baselines/{projectName}/{arg}{ext}',
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {

@@ -50,6 +50,7 @@ test('detalhe — baseline estável', async ({ page }) => {
   await page.goto('/nft/emerald')
   await expect(page.getByRole('heading', { name: 'Emerald Ape #042' })).toBeVisible()
   await expect(page.getByRole('button', { name: /Coleção página 1/ })).toBeVisible()
+  await expect(page.getByRole('region', { name: 'Mais desta coleção' }).getByRole('link')).toHaveCount(5)
   await settleVisuals(page)
   await expect(page).toHaveScreenshot('detalhe.png', { fullPage: true, animations: 'disabled' })
 })

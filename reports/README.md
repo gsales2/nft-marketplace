@@ -26,6 +26,8 @@ Execução final em 9 de outubro de 2026: **105 testes passaram em 7 minutos**, 
 
 [Relatório HTML completo](playwright/index.html). Para abrir localmente: `npx playwright show-report reports/playwright`. O relatório usa as configurações versionadas em `playwright.config.ts`. Traces e screenshots são retidos quando ocorre falha; esta execução final não produziu falhas.
 
+As comparações visuais permitem até 40 pixels diferentes por captura, sem tolerância percentual. A primeira execução no GitHub passou nos 99 testes restantes e apresentou seis diferenças visuais de 2 a 33 pixels, restritas às bordas arredondadas e ícones. Os diffs foram examinados antes de configurar esse limite; os baselines foram preservados. O detalhe também aguarda os cinco itens relacionados antes da captura.
+
 ## Publicação e checkout limpo
 
 [Site público](https://kurio-nft-marketplace-blond.vercel.app), hospedado na Vercel. Em 9 de outubro de 2026, **22 testes passaram em 1,1 minuto**, sem falhas, usando a URL pública em desktop e mobile. Foram verificados filtros REST, recuperação de erros, login, compra fictícia, comprovante após refresh, eventos Socket.IO e acesso direto às rotas privadas e inexistentes.
