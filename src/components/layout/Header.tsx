@@ -1,7 +1,7 @@
 import { useMediaQuery } from '../../lib/useMediaQuery'
 import { SvgArtwork } from '../ui/SvgArtwork'
-import imgSearch from '../../../public/images/mobile/imgSearch.svg?raw'
-import imgFilter from '../../../public/images/mobile/imgFilter.svg?raw'
+import imgSearch from '../../assets/mobile/imgSearch.svg?raw'
+import imgFilter from '../../assets/mobile/imgFilter.svg?raw'
 import { AccountControls } from '../auth/AccountControls'
 import { CartCount } from '../cart/CartFeedback'
 

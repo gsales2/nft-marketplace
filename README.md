@@ -18,6 +18,7 @@ Foi utilizada IA como apoio para acelerar implementação, revisão e testes. As
 
 ```text
 src/
+  assets/mobile/ SVGs importados como markup pelos componentes mobile
   components/
     auth/       Sessão, conexão em tempo real e controles da conta
     cart/       Carrinho, pagamento, revisão, recuperação e comprovante

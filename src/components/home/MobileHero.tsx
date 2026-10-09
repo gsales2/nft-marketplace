@@ -1,8 +1,8 @@
 import { SvgArtwork } from '../ui/SvgArtwork'
-import imgArrowRight from '../../../public/images/mobile/imgArrowRight.svg?raw'
+import imgArrowRight from '../../assets/mobile/imgArrowRight.svg?raw'
 import { Container } from '../layout/Container'
-import pageIndicator from '../../../public/images/mobile/imgFrame4.svg?raw'
-import heroTexture from '../../../public/images/mobile/imgMaskGroup.svg?raw'
+import pageIndicator from '../../assets/mobile/imgFrame4.svg?raw'
+import heroTexture from '../../assets/mobile/imgMaskGroup.svg?raw'
 
 export function MobileHero() {
   return (

@@ -1,7 +1,7 @@
 import { NFTPrice } from './NFTPrice'
 import { SvgArtwork } from '../ui/SvgArtwork'
-import favoriteEven from '../../../public/images/mobile/imgFrame410.svg?raw'
-import favoriteOdd from '../../../public/images/mobile/imgGroup58.svg?raw'
+import favoriteEven from '../../assets/mobile/imgFrame410.svg?raw'
+import favoriteOdd from '../../assets/mobile/imgGroup58.svg?raw'
 import type { CSSProperties } from 'react'
 
 import type { NFT } from '../../lib/nftPresentation'
